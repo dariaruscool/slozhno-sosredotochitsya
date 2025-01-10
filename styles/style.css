@@ -1,5 +1,453 @@
 /* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
-
+/* mobile first dark */
 .page {
   /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
+  color: var(--text-color);
+  background-image: url(../images/cover-image-dark.png);
+  object-fit: cover;
+  object-position: center;
+  background-attachment: fixed;
+}
+
+.header {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  min-height: 100vh;
+  margin: 10px 20px 0 0;
+  position: relative;
+}
+
+@media (width < 768px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+}
+
+/* скрыть в авто теме не удалось*/
+.decorated-element {
+  font-family: var(--main-font);
+  font-size: var(--main-font-size);
+  font-weight: var(--main-font-weight);
+  line-height: 25px;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  position: absolute;
+  inset: 10px 0 0 94%;
+}
+
+.decorated-element::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px 2px var(--accent-color);
+  background-color: var(--accent-color);
+  position: absolute;
+  inset: 6px 0 0 67%;
+}
+
+.decorated-zone::after {
+  content: "";
+  width: 25px;
+  height: 25px;
+  border-top: 1px solid var(--accent-color);
+  border-right: 1px solid var(--accent-color);
+  display: flex;
+  z-index: 2;
+  position: absolute;
+  inset: 10px 0 0 97.5%;
+}
+
+.decorated-zone::before {
+  content: "";
+  width: 25px;
+  height: 25px;
+  border-bottom: 1px solid var(--accent-color);
+  border-left: 1px solid var(--accent-color);
+  display: flex;
+  z-index: 2;
+  position: absolute;
+  inset: 92.5% 0 0 20px;
+}
+
+/* по-хорошему, мне кажется, этого быть не должно. Но без этого расхождения*/
+@media (width < 1024px) {
+  .decorated-zone::after {
+    inset: 10px 0 0 97%;
+  }
+  .decorated-zone::before {
+    inset: 94.5% 0 0 20px;
+  }
+  .decorated-element {
+    inset: 10px 0 0 92%;
+  }
+}
+
+@media (width < 768px) {
+  .decorated-zone::after {
+    inset: 15px 0 0 91%;
+  }
+  .decorated-zone::before {
+    inset: 95.5% 0 0 10px;
+  }
+  .decorated-element {
+    inset: 15px 0 0 80%;
+  }
+}
+
+.header__nav {
+  justify-items: center;
+}
+
+.header__title {
+  padding-top: 15px;
+}
+
+@media (width < 1024px) {
+  .header__title {
+    padding-top: 77px;
+  }
+}
+
+@media (width < 768px) {
+  .header__title {
+    display: block;
+    padding: 55px 0 0 10px;
+  }
+}
+
+.header__title-decor {
+  padding-left: calc(0.67*100vh);
+  padding-top: 35px;
+}
+
+@media (width < 1024px) {
+  .header__title-decor {
+    padding-left: calc(0.375*100vh);
+    padding-top: 25px;
+  }
+}
+
+@media (width < 768px) {
+  .header__title-decor {
+    padding: 47px 10px 0 10px;
+  }
+}
+
+.header__theme-menu-list {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(3, 70px);
+  gap: 10px;
+  justify-items: center;
+  align-items: center;
+  padding: 10px 0 0 20px;
+}
+
+/* пришлось подгонять гэпом и паддингами, не уверена, что так должно быть */
+@media (width < 1024px) {
+  .header__theme-menu-list {
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-end;
+    gap: 18px;
+    padding: 127px 10px 0 0;
+  }
+
+  .header__nav {
+    justify-items: flex-end;
+    align-self: center;
+  }
+}
+
+/* пришлось подгонять гэпом и паддингами, не уверена, что так должно быть */
+@media (width < 768px) {
+  .header__theme-menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 75px 0 0 290px;
+  }
+}
+
+.header__theme-menu-button {
+  background-color: transparent;
+  border: none;
+  font-family: var(--main-font);
+  font-weight: var(--main-font-weight);
+  font-size: var(--main-font-size);
+  line-height: 1em;
+  color: var(--accent-color);
+  text-align: center;
+}
+
+.header__theme-menu-button_active {
+  pointer-events: none;
+  outline: 1px solid currentColor;
+  outline-offset: 4px;
+}
+
+.header__theme-menu-button:hover {
+  border: 1px solid currentColor;
+}
+
+.header__theme-menu-button:focus-visible {
+  outline: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.title {
+  font-family: var(--main-font);
+  font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+  color: var(--color-title);
+  text-shadow: 4px 4px 0 #ff0070;
+}
+
+@media (width < 768px) {
+  .title {
+    font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+    line-height: 95.7px;
+  }
+}
+
+.title-decor {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+  font-family: var(--main-font);
+  font-size: var(--main-font-size);
+  font-weight: 700;
+  grid-area: title-decor;
+}
+
+.content {
+  margin: 0 20px;
+}
+
+@media (width < 768px) {
+  .content {
+    margin: 0 10px;
+  }
+}
+
+.content__card-title {
+  color: var(--accent-color);
+  font-family: var(--main-font);
+  font-size: var(--main-font-size);
+  font-weight: 700;
+  grid-area: card-title;
+}
+
+/* пришлось вымерять по 1px, не знаю, это ок или нет так делать */
+@media (width < 768px) {
+  .content__card-title {
+    margin: 40px 0 21px 0;
+  }
+}
+
+.content__card {
+  grid-area: content__card;
+}
+
+/* по-хорошему этого быть не должно. Но без этого расхождения*/
+@media (width < 1024px) {
+  .content__card {
+    padding-left: 5px;
+  }
+}
+
+.content-section1 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  grid-template-areas:
+  "card-title content__card content__card";
+  margin-top: 50px;
+}
+
+@media (width < 768px) {
+  .content-section1 {
+    display: block;
+    margin-top: 0;
+  }
+}
+
+.content-section2-1 {
+  grid-area: content-section2-1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (width < 1024px) {
+  .content-section2-1 {
+    display: block;
+  }
+}
+
+.content-section2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto-fill);
+  gap: 20px;
+  grid-template-areas:
+  "card-title . ."
+  "content-section2-1 content-section2-1 content-section2-1";
+  margin-top: 60px;
+}
+
+@media (width < 768px) {
+  .content-section2 {
+    display: block;
+    margin-top: 50px;
+  }
+}
+
+.content-section3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto-fill);
+  gap: 20px;
+  grid-template-areas:
+  "card-title title-decor title-decor"
+  "card-title content__card content__card";
+  margin-top: 60px;
+}
+
+@media (width < 768px) {
+  .content-section3 {
+    display: block;
+    margin-top: 50px;
+  }
+}
+
+.content__text {
+  font-family: var(--main-font);
+  color: var(--text-color-content);
+  font-size: var(--main-font-size);
+  font-weight: var(--main-font-weight);
+  line-height: 23.4px;
+  margin-block-start: 10px;
+  margin-block-end: 20px;
+}
+
+/* что-то не так с тенью */
+.ref {
+  text-shadow: 4px 4px 4px var(--accent-color);
+  text-decoration: none;
+}
+
+.ref:hover {
+ border-bottom: 1px solid var(--text-color-content);
+}
+
+/* при использовании tab почему-то пропускается ссылка "выяснили" */
+.ref:focus-visible {
+  outline: none;
+  border: 1px solid var(--text-color-content);
+}
+
+.picture1 {
+  grid-area: picture1;
+}
+
+.picture2 {
+  grid-area: picture2;
+}
+
+.picture3 {
+  grid-area: picture3;
+}
+
+.picture4 {
+  grid-area: picture4;
+}
+
+.picture5 {
+  grid-area: picture5;
+}
+
+.gallery {
+  max-width: 1024px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  grid-area: gallery;
+  grid-template-areas:
+  "picture1 picture1 picture2"
+  "picture3 picture4 picture2"
+  "picture3 picture5 picture5";
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+@media (width < 768px) {
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+}
+
+.content-section4 {
+  display: grid;
+  grid-template-rows: repeat(2, auto-fill);
+  gap: 20px;
+  grid-template-areas:
+  "title-decor"
+  "gallery";
+  margin-top: 60px;
+}
+
+@media (width < 768px) {
+  .content-section4 {
+    display: block;
+    margin-top: 50px;
+  }
+}
+
+.content__picture {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.title-decor-thin {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+  font-family: var(--main-font);
+  font-size: var(--main-font-size);
+  font-weight: var(--main-font-weight);
+}
+
+@media (width < 768px) {
+  .title-decor-thin {
+    margin-top: 20px;
+  }
+}
+
+.footer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 60px;
+}
+
+@media (width < 768px) {
+  .footer {
+    margin-top: 40px;
+  }
+}
+
+.footer-title {
+  font-family: var(--main-font);
+  font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+  color: var(--color-title);
+  text-shadow: 2px 2px 0 #ff0070; 
 }

@@ -9,4 +9,44 @@
     Так стили написанные ниже будут иметь больший вес,
     чем стили в медиазапросе предпочтений пользователя
   */
+  --text-color-content: #F1B2CE;
+  --bg-color:#000028;
+  --accent-color: #FF0070;
+  --main-font: 'IBM Plex Mono';
+  --main-font-size: 18px;
+  --main-font-weight: 400;
+  --main-line-height: 23.4px;
+  --color-title: #DB00FF;
+  background-image: url(../images/cover-image-dark.png);
+}
+
+.theme_dark .header__theme-menu-button {
+  color: var(--accent-color);
+}
+
+.theme_dark .header__theme-menu-list::after {
+  border-top: 1px solid var(--accent-color);
+  border-right: 1px solid var(--accent-color);
+}
+
+.theme_dark .decorated-element {
+  font-family: var(--main-font);
+  font-size: var(--main-font-size);
+  font-weight: var(--main-font-weight);
+  line-height: 25px;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  position: absolute;
+  inset: 10px 0 0 94%;
+}
+
+.theme_dark .decorated-element::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px 2px var(--accent-color);
+  background-color: var(--accent-color);
+  position: absolute;
+  inset: 6px 0 0 67%;
 }
