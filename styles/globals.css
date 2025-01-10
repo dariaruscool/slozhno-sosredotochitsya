@@ -6,10 +6,11 @@
   box-sizing: border-box;
 }
 
+/* изменила марджин с 0 на 10 */
 body {
   min-inline-size: 375px;
   max-inline-size: 1440px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 h1,
